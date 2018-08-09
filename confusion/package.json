@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "boostrap": "^2.0.0",
+    "bootstrap-social": "^5.1.1",
+    "font-awesome": "^4.7.0",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
