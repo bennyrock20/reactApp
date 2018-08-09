@@ -19,7 +19,7 @@ class Main extends Component {
   }
 
   onClickDishDetails(param,param2){
-    alert("onClickDishDetails"+ param + param2);
+    //alert("onClickDishDetails"+ param + param2);
   }
 
   render() {
@@ -30,13 +30,14 @@ class Main extends Component {
             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
           </div>
         </Navbar>
-        <Menu dishes={this.state.dishes} 
-              onClick={(dishId) => this.onDishSelect(dishId)} />
-        <DishDetail 
-            dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}
-            onClick = {(param,param2)=> this.onClickDishDetails(param,param2) }
-         />
-        
+        <div className="container">
+            <Menu dishes={this.state.dishes} 
+                  onClick={(dishId) => this.onDishSelect(dishId)} />
+            <DishDetail 
+                dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}
+                onClick = {(param,param2)=> this.onClickDishDetails(param,param2) }
+            />
+         </div>
       </div>
     );
   }
