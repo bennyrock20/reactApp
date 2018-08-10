@@ -1,6 +1,5 @@
 # reactApp
 
-<h3> Coursera </h3
+<h3> Full-Stack Web Development with React specialization </h3
 
-Front-End Web Development with React
-
+This is a repository that I will be using through the Full-Stack Web Development with React specialization from Coursera. 
