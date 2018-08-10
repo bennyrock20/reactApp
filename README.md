@@ -1,4 +1,4 @@
-# reactApp
+# Front-End Web Development with React
 
 <h3> Full-Stack Web Development with React specialization </h3
 
