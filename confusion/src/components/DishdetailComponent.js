@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg,
-    CardTitle, CardText } from 'reactstrap';
-
+    CardTitle, CardText,Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
     function RenderName({name}){
         return (
@@ -14,7 +14,7 @@ import { Card, CardImg,
             return <div></div>;
         }
         return (
-            <div className="col-sm-12 col-md-5 m-1">
+            <div className="col-sm-12 col-md-12">
                 <Card key={dish.id}>
                     <CardImg width="100%" src={dish.image} alt={dish.name} />
                     <div className="col-12 p-2">
@@ -51,13 +51,24 @@ import { Card, CardImg,
         }
 
         return (
-            <div className="row">
-               <RenderDish dish= {props.dish} />
-                <div className="col-xs-12 col-md-5 m-1">
-                    <h4> Comments</h4>;
-                    <ul className="list-unstyled" onClick={()=> props.onClick("hi william","Tapia")}>
-                        <RenderComments comments= {props.dish.comments} />
-                    </ul>
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>                
+                </div>
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <RenderDish dish={props.dish} />
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <RenderComments comments={props.comments} />
+                    </div>
                 </div>
             </div>
         );
