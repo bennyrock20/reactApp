@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Menu from './MenuComponent';
@@ -8,6 +7,7 @@ import DishDetail from './DishdetailComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
 import Contact from './ContactComponent';
+import About   from './AboutComponent'
 
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -42,11 +42,19 @@ class Main extends Component {
             comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
       );
     };
+
+    const AboutPage = () =>{
+      return(
+        <About leaders = {this.state.leaders} />
+      );
+
+    };
     return (
       <div>
         <Header />
           <Switch>
               <Route exact path='/home' component={HomePage} />
+              <Route exact path='/aboutus' component={AboutPage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
               <Route exact path='/contactus' component= {Contact} />
