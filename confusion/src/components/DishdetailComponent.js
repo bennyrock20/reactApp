@@ -168,7 +168,7 @@ function RenderDish({dish}) {
     }
    
     if (comments != null ){
-        return  comments.map((comments) => {
+        const comm =  comments.map((comments) => {
             return ( 
                     <li key={comments.id} className="media p-1">
                         <div className="media-body">
@@ -178,6 +178,17 @@ function RenderDish({dish}) {
                     </li>
             );
         });
+
+        return (
+            <div>
+                <h4>Comments</h4>
+                <ul className="list-unstyled">
+                    {comm}
+                </ul>
+                <CommentForm />
+            </div>
+        );
+
     }
   }
 
@@ -205,7 +216,7 @@ const  DishDetail = (props) => {
                 <div className="col-12 col-md-6">
                     <h2>Comments</h2>
                     <RenderComments comments={props.comments} />
-                    <CommentForm />
+                    
                 </div>
             </div>
         </div>
