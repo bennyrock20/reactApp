@@ -2,11 +2,11 @@ import React from 'react';
 import { Card, CardImg,
     CardTitle, CardText,Breadcrumb, BreadcrumbItem ,Button, Modal, ModalHeader, ModalBody,Row, Col, 
         Label } from 'reactstrap';
-
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 
 const required = (val) => val && val.length;
@@ -150,15 +150,21 @@ function RenderDish({dish}) {
         return <div></div>;
     }
     return (
-        <div className="col-sm-12 col-md-12">
-            <Card key={dish.id}>
-                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                <div className="col-12 p-2">
-                    <CardTitle><RenderName name={dish.name} /></CardTitle>
-                    <CardText> {dish.description} </CardText>
-                </div>
-            </Card>
-        </div>
+        <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+            <div className="col-sm-12 col-md-12">
+                <Card key={dish.id}>
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                    <div className="col-12 p-2">
+                        <CardTitle><RenderName name={dish.name} /></CardTitle>
+                        <CardText> {dish.description} </CardText>
+                    </div>
+                </Card>
+            </div>
+        </FadeTransform>
     );
   }
 
@@ -168,25 +174,31 @@ function RenderDish({dish}) {
     }
    
     if (comments != null ){
-        const comm =  comments.map((comments) => {
-            return ( 
-                    <li key={comments.id} className="media p-1">
-                        <div className="media-body">
-                            { comments.comment }
-                            <p className="mt-0 mt-2">-- {comments.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}</p>
-                        </div>
-                    </li>
-            );
-        });
+        
+            const comm =  comments.map((comments) => {
+                return (
+                    <Fade in> 
+                        <li key={comments.id} className="media p-1">
+                            <div className="media-body">
+                                { comments.comment }
+                                <p className="mt-0 mt-2">-- {comments.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}</p>
+                            </div>
+                        </li>
+                    </Fade>
+                );
+            });
+        
 
         return (
-            <div>
-                <h4>Comments</h4>
-                <ul className="list-unstyled">
-                    {comm}
-                </ul>
-                <CommentForm dishId={dishId} postComment={postComment} />
-            </div>
+            <Stagger in>
+                <div>
+                    <h4>Comments</h4>
+                    <ul className="list-unstyled">
+                        {comm}
+                    </ul>
+                    <CommentForm dishId={dishId} postComment={postComment} />
+                </div>
+            </Stagger>
         );
 
     }
