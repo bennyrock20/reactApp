@@ -37,9 +37,6 @@ const mapDispatchToProps = dispatch => ({
 
 class Main extends Component {
 
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchDishes();
@@ -82,12 +79,7 @@ class Main extends Component {
       );
     };
 
-    const AboutPage = () =>{
-      return(
-        <About leaders = {this.props.leaders} />
-      );
-
-    };
+    
     return (
       <div>
         <Header />
